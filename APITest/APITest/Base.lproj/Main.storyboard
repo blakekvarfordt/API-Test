@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="IIb-et-1aV">
     <device id="retina6_1" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -17,9 +17,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" id="M6y-3Q-JYt">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </searchBar>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MovieCell" rowHeight="268" id="mNJ-rJ-T10" customClass="MovieTableViewCell" customModule="APITest" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="414" height="268"/>
+                                <rect key="frame" x="0.0" y="72" width="414" height="268"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="mNJ-rJ-T10" id="1vr-ka-EDm">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="267.5"/>
@@ -69,6 +74,12 @@
                                         <constraint firstItem="C1U-2o-2sI" firstAttribute="leading" secondItem="1vr-ka-EDm" secondAttribute="leading" constant="20" id="ql3-Wg-rjh"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="movieImageView" destination="yGl-C3-SoW" id="l2a-PY-EdR"/>
+                                    <outlet property="ratingLabel" destination="CXU-lz-A6R" id="hcY-tw-hZE"/>
+                                    <outlet property="summaryLabel" destination="I6v-d0-1bM" id="xQm-ea-e1P"/>
+                                    <outlet property="titleLabel" destination="au1-qq-yqj" id="XE5-MU-izd"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -77,6 +88,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Root View Controller" id="d8W-M9-L8y"/>
+                    <connections>
+                        <outlet property="searchBar" destination="M6y-3Q-JYt" id="t3q-O6-zk7"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wTU-d1-2JI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -11,12 +11,13 @@ import UIKit.UIImage
 
 class MovieController {
     
-    func fetchMovie(searchTerm: String, completion: @escaping ([Movie?]) -> Void) {
+    static func fetchMovie(searchTerm: String, completion: @escaping ([Movie?]) -> Void) {
         
-        guard let baseURL = URL(string: "https://api.themoviedb.org/3/movie/") else { completion([]); return }
+        guard let baseURL = URL(string: "https://api.themoviedb.org/") else { completion([]); return }
         var urlComponents = URLComponents(url: baseURL, resolvingAgainstBaseURL: true)
-        let searchTermItem = URLQueryItem(name: "api_key", value: "feb94c0b93eb522d6e6ac65999f17cbd")
-        urlComponents?.queryItems = [searchTermItem]
+        let searchTerm = URLQueryItem(name: "search", value: searchTerm)
+        let searchKeyItem = URLQueryItem(name: "api_key", value: "feb94c0b93eb522d6e6ac65999f17cbd")
+        urlComponents?.queryItems = [searchTerm, searchKeyItem]
         
         guard let legitURL = urlComponents?.url else { completion([]); return }
         
@@ -31,8 +32,8 @@ class MovieController {
             guard let data = data else { completion([]); return }
             
             do {
-                let movie = try JSONDecoder().decode([Movie].self, from: data)
-                completion(movie)
+                let movie = try JSONDecoder().decode(topLevelMovie.self, from: data)
+                completion(movie.results)
             } catch {
                 print(error)
                 print(error.localizedDescription)
@@ -42,7 +43,7 @@ class MovieController {
     }
     
     
-    func fetchImage(item: Movie, completion: @escaping (UIImage?) -> Void) {
+    static func fetchImage(item: Movie, completion: @escaping (UIImage?) -> Void) {
         
         guard let imageURL = URL(string: item.imageURL) else { completion(nil); return }
         print(imageURL)

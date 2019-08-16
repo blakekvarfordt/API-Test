@@ -8,7 +8,12 @@
 
 import Foundation
 
-struct Movie: Codable {
+struct topLevelMovie: Decodable {
+    let results: [Movie]
+}
+
+
+struct Movie: Decodable {
     let title: String
     let rating: String
     let summary: String
