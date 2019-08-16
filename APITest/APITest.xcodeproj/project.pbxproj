@@ -8,20 +8,26 @@
 
 /* Begin PBXBuildFile section */
 		634F8FC62306F84800E2B831 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634F8FC52306F84800E2B831 /* AppDelegate.swift */; };
-		634F8FC82306F84800E2B831 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634F8FC72306F84800E2B831 /* ViewController.swift */; };
 		634F8FCB2306F84800E2B831 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 634F8FC92306F84800E2B831 /* Main.storyboard */; };
 		634F8FCD2306F84900E2B831 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 634F8FCC2306F84900E2B831 /* Assets.xcassets */; };
 		634F8FD02306F84900E2B831 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 634F8FCE2306F84900E2B831 /* LaunchScreen.storyboard */; };
+		63BE5B422306FE6C0020E6F1 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63BE5B412306FE6C0020E6F1 /* Movie.swift */; };
+		63BE5B44230702830020E6F1 /* MovieController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63BE5B43230702830020E6F1 /* MovieController.swift */; };
+		63BE5B4623070F910020E6F1 /* MovieTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63BE5B4523070F910020E6F1 /* MovieTableViewController.swift */; };
+		63BE5B4923070FE00020E6F1 /* MovieTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63BE5B4823070FE00020E6F1 /* MovieTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		634F8FC22306F84800E2B831 /* APITest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = APITest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		634F8FC52306F84800E2B831 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		634F8FC72306F84800E2B831 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		634F8FCA2306F84800E2B831 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		634F8FCC2306F84900E2B831 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		634F8FCF2306F84900E2B831 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		634F8FD12306F84900E2B831 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		63BE5B412306FE6C0020E6F1 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
+		63BE5B43230702830020E6F1 /* MovieController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieController.swift; sourceTree = "<group>"; };
+		63BE5B4523070F910020E6F1 /* MovieTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieTableViewController.swift; sourceTree = "<group>"; };
+		63BE5B4823070FE00020E6F1 /* MovieTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,14 +60,57 @@
 		634F8FC42306F84800E2B831 /* APITest */ = {
 			isa = PBXGroup;
 			children = (
-				634F8FC52306F84800E2B831 /* AppDelegate.swift */,
-				634F8FC72306F84800E2B831 /* ViewController.swift */,
+				63BE5B4723070FD00020E6F1 /* Views */,
+				63BE5B3F2306FA560020E6F1 /* ViewControllers */,
+				63BE5B3E2306FA4A0020E6F1 /* ModelController */,
+				63BE5B3D2306FA3F0020E6F1 /* Models */,
+				63BE5B402306FADC0020E6F1 /* Resources */,
 				634F8FC92306F84800E2B831 /* Main.storyboard */,
+			);
+			path = APITest;
+			sourceTree = "<group>";
+		};
+		63BE5B3D2306FA3F0020E6F1 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				63BE5B412306FE6C0020E6F1 /* Movie.swift */,
+				63BE5B43230702830020E6F1 /* MovieController.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		63BE5B3E2306FA4A0020E6F1 /* ModelController */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ModelController;
+			sourceTree = "<group>";
+		};
+		63BE5B3F2306FA560020E6F1 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				63BE5B4523070F910020E6F1 /* MovieTableViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		63BE5B402306FADC0020E6F1 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				634F8FC52306F84800E2B831 /* AppDelegate.swift */,
 				634F8FCC2306F84900E2B831 /* Assets.xcassets */,
 				634F8FCE2306F84900E2B831 /* LaunchScreen.storyboard */,
 				634F8FD12306F84900E2B831 /* Info.plist */,
 			);
-			path = APITest;
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		63BE5B4723070FD00020E6F1 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				63BE5B4823070FE00020E6F1 /* MovieTableViewCell.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -135,7 +184,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				634F8FC82306F84800E2B831 /* ViewController.swift in Sources */,
+				63BE5B4923070FE00020E6F1 /* MovieTableViewCell.swift in Sources */,
+				63BE5B4623070F910020E6F1 /* MovieTableViewController.swift in Sources */,
+				63BE5B44230702830020E6F1 /* MovieController.swift in Sources */,
+				63BE5B422306FE6C0020E6F1 /* Movie.swift in Sources */,
 				634F8FC62306F84800E2B831 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -284,7 +336,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 83YG3ZQCH4;
-				INFOPLIST_FILE = APITest/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/APITest/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -302,7 +354,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 83YG3ZQCH4;
-				INFOPLIST_FILE = APITest/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/APITest/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

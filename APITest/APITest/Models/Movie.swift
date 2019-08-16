@@ -1,0 +1,25 @@
+//
+//  Movie.swift
+//  APITest
+//
+//  Created by Blake kvarfordt on 8/16/19.
+//  Copyright © 2019 Blake kvarfordt. All rights reserved.
+//
+
+import Foundation
+
+struct Movie: Codable {
+    let title: String
+    let rating: String
+    let summary: String
+    let imageURL: String
+    let id: String
+    
+    enum CodingKeys: String, CodingKey {
+        case title
+        case rating = "vote_average"
+        case summary = "overview"
+        case id
+        case imageURL = "poster_path"
+    }
+}
