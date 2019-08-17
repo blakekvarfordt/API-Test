@@ -15,10 +15,10 @@ struct topLevelMovie: Decodable {
 
 struct Movie: Decodable {
     let title: String
-    let rating: String
+    let rating: Double
     let summary: String
-    let imageURL: String
-    let id: String
+    let imageURL: String?
+    let id: Int
     
     enum CodingKeys: String, CodingKey {
         case title

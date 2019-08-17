@@ -41,7 +41,7 @@ class MovieTableViewController: UITableViewController {
         DispatchQueue.main.async {
             
             cell?.titleLabel.text = movie.title
-            cell?.ratingLabel.text = movie.rating
+            cell?.ratingLabel.text = String(movie.rating)
             cell?.summaryLabel.text = movie.summary
             
         }

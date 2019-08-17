@@ -13,13 +13,15 @@ class MovieController {
     
     static func fetchMovie(searchTerm: String, completion: @escaping ([Movie?]) -> Void) {
         
-        guard let baseURL = URL(string: "https://api.themoviedb.org/") else { completion([]); return }
+        guard let baseURL = URL(string: "https://api.themoviedb.org/3/search/movie") else { completion([]); return }
         var urlComponents = URLComponents(url: baseURL, resolvingAgainstBaseURL: true)
-        let searchTerm = URLQueryItem(name: "search", value: searchTerm)
         let searchKeyItem = URLQueryItem(name: "api_key", value: "feb94c0b93eb522d6e6ac65999f17cbd")
-        urlComponents?.queryItems = [searchTerm, searchKeyItem]
+        let searchTerm = URLQueryItem(name: "query", value: searchTerm)
+        urlComponents?.queryItems = [searchKeyItem, searchTerm]
         
         guard let legitURL = urlComponents?.url else { completion([]); return }
+        
+        print(legitURL)
         
         URLSession.shared.dataTask(with: legitURL) { (data, _, error) in
             
@@ -44,8 +46,8 @@ class MovieController {
     
     
     static func fetchImage(item: Movie, completion: @escaping (UIImage?) -> Void) {
-        
-        guard let imageURL = URL(string: item.imageURL) else { completion(nil); return }
+        guard let imageString = item.imageURL else { completion(nil); return }
+        guard let imageURL = URL(string: imageString) else { completion(nil); return }
         print(imageURL)
         
         URLSession.shared.dataTask(with: imageURL) { (data, _, error) in
