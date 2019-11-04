@@ -18,39 +18,25 @@ class MovieTableViewController: UITableViewController {
         super.viewDidLoad()
         searchBar.delegate = self
     }
-    
-    var movies = [Movie?]() {
-        didSet {
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
-        }
-    }
 
     // MARK: - Table view data source
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        return movies.count
+        return MovieController.shared.movies.count
     }
-
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "MovieCell", for: indexPath) as? MovieTableViewCell
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "MovieCell", for: indexPath) as? MovieTableViewCell else { return UITableViewCell() }
         
-        guard let movie = movies[indexPath.row] else { return UITableViewCell()}
-        DispatchQueue.main.async {
+        let movie = MovieController.shared.movies[indexPath.row]
             
-            cell?.titleLabel.text = movie.title
-            cell?.ratingLabel.text = String(movie.rating)
-            cell?.summaryLabel.text = movie.summary
-            
-        }
-        
- 
-
-        return cell ?? UITableViewCell()
+            cell.movie = movie
+    
+        return cell
     }
-
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 200
+    }
 }
 
 extension MovieTableViewController: UISearchBarDelegate {
@@ -59,13 +45,11 @@ extension MovieTableViewController: UISearchBarDelegate {
         
         guard let searchTerm = searchBar.text, !searchTerm.isEmpty else { return }
         
-        MovieController.fetchMovie(searchTerm: searchTerm) { (movie) in
-            
-            self.movies = movie
-            
-            DispatchQueue.main.async {
-                
-                self.tableView.reloadData()
+        MovieController.shared.fetchMovie(searchTerm: searchTerm) { (success) in
+            if success {
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
             }
         }
     }

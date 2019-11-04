@@ -16,5 +16,19 @@ class MovieTableViewCell: UITableViewCell {
     @IBOutlet weak var ratingLabel: UILabel!
     @IBOutlet weak var summaryLabel: UILabel!
     
+    // Properties
+    var movie: Movie? {
+        didSet {
+            setupViews()
+        }
+    }
+    
+    
+    func setupViews() {
+        guard let movie = movie else { return }
+        titleLabel.text = movie.title
+        ratingLabel.text = "\(movie.rating)"
+        summaryLabel.text = movie.summary
+    }
 
 }
