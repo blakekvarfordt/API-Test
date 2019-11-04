@@ -20,6 +20,7 @@ class MovieTableViewCell: UITableViewCell {
     var movie: Movie? {
         didSet {
             setupViews()
+            imageQuery()
         }
     }
     
@@ -29,6 +30,17 @@ class MovieTableViewCell: UITableViewCell {
         titleLabel.text = movie.title
         ratingLabel.text = "\(movie.rating)"
         summaryLabel.text = movie.summary
+    }
+    
+    func imageQuery() {
+        guard let item = movie else { return }
+        MovieController.shared.fetchImage(item: item) { (image) in
+            if image != nil {
+                DispatchQueue.main.async {
+                    self.movieImageView.image = image
+                }
+            }
+        }
     }
 
 }

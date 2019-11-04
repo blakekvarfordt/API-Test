@@ -9,7 +9,7 @@
 import UIKit
 
 class MovieTableViewController: UITableViewController {
-
+    
     // Outlets
     @IBOutlet weak var searchBar: UISearchBar!
     
@@ -18,7 +18,7 @@ class MovieTableViewController: UITableViewController {
         super.viewDidLoad()
         searchBar.delegate = self
     }
-
+    
     // MARK: - Table view data source
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return MovieController.shared.movies.count
@@ -28,9 +28,9 @@ class MovieTableViewController: UITableViewController {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "MovieCell", for: indexPath) as? MovieTableViewCell else { return UITableViewCell() }
         
         let movie = MovieController.shared.movies[indexPath.row]
-            
-            cell.movie = movie
-    
+        
+        cell.movie = movie
+        
         return cell
     }
     
@@ -45,8 +45,8 @@ extension MovieTableViewController: UISearchBarDelegate {
         
         guard let searchTerm = searchBar.text, !searchTerm.isEmpty else { return }
         
-        MovieController.shared.fetchMovie(searchTerm: searchTerm) { (success) in
-            if success {
+        MovieController.shared.fetchMovie(searchTerm: searchTerm) { (movies) in
+            if movies != nil {
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                 }
