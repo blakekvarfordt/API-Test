@@ -28,7 +28,14 @@ class MovieTableViewController: UITableViewController {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "MovieCell", for: indexPath) as? MovieTableViewCell else { return UITableViewCell() }
         
         let movie = MovieController.shared.movies[indexPath.row]
-        
+        MovieController.shared.fetchImage(item: movie) { (image) in
+            if image != nil {
+                DispatchQueue.main.async {
+                    cell.movieImage = image
+                    self.tableView.reloadData()
+                }
+            }
+        }
         cell.movie = movie
         
         return cell
