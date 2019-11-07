@@ -13,7 +13,6 @@ class MovieController {
     
     static let shared = MovieController()
     
-    var movies = [Movie]()
     
      func fetchMovie(searchTerm: String, completion: @escaping ([Movie]?) -> Void) {
         
@@ -40,7 +39,6 @@ class MovieController {
             do {
                 let movie = try JSONDecoder().decode(topLevelMovie.self, from: data)
                 completion(movie.results)
-                self.movies = movie.results
             } catch {
                 print(error)
                 print(error.localizedDescription)
@@ -51,11 +49,13 @@ class MovieController {
     
     
      func fetchImage(item: Movie, completion: @escaping (UIImage?) -> Void) {
+        let imageBaseURL = "https://image.tmdb.org/t/p/w500/"
         guard let imageString = item.imageURL else { completion(nil); return }
-        guard let imageURL = URL(string: imageString) else { completion(nil); return }
+        guard let imageURL = URL(string: imageBaseURL) else { completion(nil); return }
+        let finalURL = imageURL.appendingPathComponent(imageString)
         print(imageURL)
         
-        URLSession.shared.dataTask(with: imageURL) { (data, _, error) in
+        URLSession.shared.dataTask(with: finalURL) { (data, _, error) in
             
             if let error = error {
                 print(error)

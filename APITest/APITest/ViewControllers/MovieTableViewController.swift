@@ -13,6 +13,7 @@ class MovieTableViewController: UITableViewController {
     // Outlets
     @IBOutlet weak var searchBar: UISearchBar!
     
+    var movies = [Movie]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,21 +22,14 @@ class MovieTableViewController: UITableViewController {
     
     // MARK: - Table view data source
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return MovieController.shared.movies.count
+        return movies.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "MovieCell", for: indexPath) as? MovieTableViewCell else { return UITableViewCell() }
         
-        let movie = MovieController.shared.movies[indexPath.row]
-        MovieController.shared.fetchImage(item: movie) { (image) in
-            if image != nil {
-                DispatchQueue.main.async {
-                    cell.movieImage = image
-                    self.tableView.reloadData()
-                }
-            }
-        }
+        let movie = movies[indexPath.row]
+       
         cell.movie = movie
         
         return cell
@@ -55,6 +49,8 @@ extension MovieTableViewController: UISearchBarDelegate {
         MovieController.shared.fetchMovie(searchTerm: searchTerm) { (movies) in
             if movies != nil {
                 DispatchQueue.main.async {
+                    guard let movies = movies else { return }
+                    self.movies = movies
                     self.tableView.reloadData()
                 }
             }

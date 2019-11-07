@@ -24,22 +24,22 @@ class MovieTableViewCell: UITableViewCell {
         }
     }
     
-    var movieImage: UIImage? {
-        didSet {
-            setupImage()
-        }
-    }
-    
     
     func setupViews() {
         guard let movie = movie else { return }
         titleLabel.text = movie.title
         ratingLabel.text = "\(movie.rating)"
         summaryLabel.text = movie.summary
-    }
-    
-    func setupImage() {
-        movieImageView.image = movieImage
+        
+        
+        MovieController.shared.fetchImage(item: movie) { (image) in
+                   if image != nil {
+                       DispatchQueue.main.async {
+                        guard let image = image else { return }
+                        self.movieImageView.image = image
+                       }
+                   }
+               }
     }
     
 }
